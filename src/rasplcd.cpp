@@ -65,13 +65,26 @@ void LiquidCrystal::clear()
     usleep(2000);
 }
 
-void LiquidCrystal::print(char * _string, uint8_t _len)
+void LiquidCrystal::print(char * _string, uint8_t _len = 16)
 {
     for (uint8_t i = 0; i < _len; i++)
 	{
+		if (_string[i] == '\0') return;
 		write_rs(((int)(_string[i])));
 	}
 	
+}
+
+void LiquidCrystal::print(std::string _string)
+{
+
+	char* c = &*_string.begin();
+
+	for (uint8_t i = 0; i < _cols; i++)
+	{
+		if (c[i] == '\0') return;
+		write_rs(((int)(c[i])));
+	}
 }
 
 void LiquidCrystal::home()

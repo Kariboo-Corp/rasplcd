@@ -7,6 +7,9 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <unistd.h>
+#include <string>
+#include <string.h>
+#include <iostream>
 
 #if __APPLE__ // Not usable on Apple ... used to test if it compile.
     #include <sys/ioctl.h>
@@ -91,6 +94,7 @@ public:
     void noBlink();
     void blink();
     void print(char *, uint8_t);
+	void print(std::string);
     void noCursor();
     void cursor();
     

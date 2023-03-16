@@ -13,4 +13,4 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 add_library(rasplcd SHARED src/rasplcd.cpp)
 
 install(TARGETS rasplcd DESTINATION /usr/lib)
-install(FILES include/rasplcd.h DESTINATION include)
+install(FILES include/rasplcd.hpp DESTINATION include)
