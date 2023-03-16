@@ -14,8 +14,9 @@
 #endif
 
 #if __linux__
-    #include <sys/ioctl.h>
+	#include <linux/i2c.h>
     #include <linux/i2c-dev.h>
+    #include <sys/ioctl.h>
 #endif
 
 #include <fcntl.h>
@@ -116,11 +117,23 @@ public:
 
     void setBacklight(uint8_t new_val);				// alias for backlight() and nobacklight()
 	void load_custom_character(uint8_t char_num, uint8_t *rows);	// alias for createChar()
-	void printstr(const char[]);
 
 private:
-
-
-}
+	void expanderWrite(uint8_t);
+	void pulseEnable(uint8_t);
+	void send(uint8_t, uint8_t);
+	void write4bits(uint8_t);
+	void command(uint8_t);
+	uint8_t write_rs(uint8_t);
+	uint8_t _addr;
+	uint8_t _displayfunction;
+	uint8_t _displaycontrol;
+	uint8_t _displaymode;
+	uint8_t _cols;
+	uint8_t _rows;
+	uint8_t _charsize;
+	uint8_t _backlightval;
+    int _i2c_fd;
+};
 
 #endif
